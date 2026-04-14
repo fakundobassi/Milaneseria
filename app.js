@@ -23,8 +23,34 @@ function moverCarousel(idCarousel, direccion) {
     inner.style.transform = `translateX(${desplazamiento}%)`;
 }
 
-// --- LÓGICA DEL CARRITO (Mantén lo que ya tenías debajo de esto) ---
+function inicializarCarruselesTactiles() {
+    const carousels = document.querySelectorAll('.carousel');
+    let touchStartX = 0;
 
+    carousels.forEach(carousel => {
+        carousel.addEventListener('touchstart', event => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, {
+            passive: true
+        });
+
+        carousel.addEventListener('touchend', event => {
+            const touchEndX = event.changedTouches[0].clientX;
+            const distancia = touchEndX - touchStartX;
+            const umbral = 40;
+
+            if (Math.abs(distancia) >= umbral) {
+                moverCarousel(carousel.id, distancia < 0 ? 1 : -1);
+            }
+        }, {
+            passive: true
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', inicializarCarruselesTactiles);
+
+// --- LÓGICA DEL CARRITO (Mantén lo que ya tenías debajo de esto) ---
 
 
 

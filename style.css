@@ -329,13 +329,14 @@ button:hover {
     }
 
     .carousel-btn {
-        top: auto;
-        bottom: 12px;
-        transform: none;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
         padding: 8px;
         font-size: 0.95rem;
         min-width: 34px;
         min-height: 34px;
+        background: rgba(0, 0, 0, 0.55);
     }
 
     .carousel-btn.prev {
@@ -346,7 +347,12 @@ button:hover {
         right: 8px;
     }
 
-    button,
+    .carousel-btn {
+        width: auto;
+        height: auto;
+    }
+
+    button:not(.carousel-btn),
     .btn-comprar {
         width: 100%;
         padding: 14px;
