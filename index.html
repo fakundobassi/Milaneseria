@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Milanesería - Saladillo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-content">
+            <img src="img/logo.png" alt="La Milanesería">
+            <p>LOS ARTESANOS DE LA MILANESA</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="menu">
+            <h2>Nuestras Especialidades</h2>
+            <div class="grid" id="menu-container">
+
+                <div class="card" id="item-clasica">
+                    <div class="carousel" id="car-clasica" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/laclasica.heic" alt="La clasica">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-clasica', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-clasica', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA CLÁSICA</h3>
+                    <p class="ingredientes">Salsa casera / Jamón / Muzzarella</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="28000">XL Carne (Para 3) - $28.000</option>
+                        <option value="25000">XL Pollo (Para 3) - $25.000</option>
+                        <option value="15000">Individual Carne - $15.000</option>
+                        <option value="14000">Individual Pollo - $14.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA CLÁSICA', 'item-clasica')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-criolla">
+                    <div class="carousel" id="car-criolla" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/lacriolla.heic" alt="LaFoto 1">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-criolla', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-criolla', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA CRIOLLA</h3>
+                    <p class="ingredientes">Milanesa con 4 huevos a caballo</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="25000">XL Carne (Para 3) - $25.000</option>
+                        <option value="22000">XL Pollo (Para 3) - $22.000</option>
+                        <option value="13000">Individual Carne - $13.000</option>
+                        <option value="12000">Individual Pollo - $12.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA CRIOLLA', 'item-criolla')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-fresca">
+                    <div class="carousel" id="car-fresca" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/lafresca.heic" alt="La Fresca">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-fresca', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-fresca', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA FRESCA</h3>
+                    <p class="ingredientes">Salsa Casera / Muzzarella / Rodajas de tomate fresco / Provensal</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="28000">XL Carne (Para 3) - $28.000</option>
+                        <option value="25000">XL Pollo (Para 3) - $25.000</option>
+                        <option value="15000">Individual Carne - $15.000</option>
+                        <option value="14000">Individual Pollo - $14.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA FRESCA', 'item-fresca')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-quesuda">
+                    <div class="carousel" id="car-quesuda" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/laquesuda.heic" alt="La Quesuda">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-quesuda', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-quesuda', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA QUESUDA</h3>
+                    <p class="ingredientes">Muzzarella / Roquefort / Cheddar / Parmesano</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="30000">XL Carne (Para 3) - $30.000</option>
+                        <option value="27000">XL Pollo (Para 3) - $27.000</option>
+                        <option value="16000">Individual Carne - $16.000</option>
+                        <option value="15000">Individual Pollo - $15.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA QUESUDA', 'item-quesuda')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-dulzona">
+                    <div class="carousel" id="car-dulzona" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/ladulzona1.heic" alt="La Dulzona">
+                            <img src="img/ladulzona2.heic" alt="La Dulzona">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-dulzona', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-dulzona', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA DULZONA</h3>
+                    <p class="ingredientes">Salsa Casera / Muzzarella / Cebolla Caramelizada / Parmesano</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="28000">XL Carne (Para 3) - $28.000</option>
+                        <option value="25000">XL Pollo (Para 3) - $25.000</option>
+                        <option value="15000">Individual Carne - $15.000</option>
+                        <option value="14000">Individual Pollo - $14.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA DULZONA', 'item-dulzona')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-casera">
+                    <div class="carousel" id="car-casera" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/lacasera1.heic" alt="La Casera">
+                            <img src="img/lacasera2.heic" alt="La Casera">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-casera', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-casera', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA CASERA</h3>
+                    <p class="ingredientes">Salsa Casera / Muzzarella / Roquefort / Cebolla / Panceta / Nuez</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="33000">XL Carne (Para 3) - $33.000</option>
+                        <option value="30000">XL Pollo (Para 3) - $30.000</option>
+                        <option value="18500">Individual Carne - $18.500</option>
+                        <option value="17500">Individual Pollo - $17.500</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA CASERA', 'item-casera')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-yankee">
+                    <div class="carousel" id="car-yankee" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/layankee1.heic" alt="La Yankee">
+                            <img src="img/layankee2.heic" alt="La Yankee">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-yankee', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-yankee', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA YANKEE</h3>
+                    <p class="ingredientes">Doble Cheddar / Panceta / 4 Huevos fritos</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="32000">XL Carne (Para 3) - $32.000</option>
+                        <option value="29000">XL Pollo (Para 3) - $29.000</option>
+                        <option value="17500">Individual Carne - $17.500</option>
+                        <option value="16500">Individual Pollo - $16.500</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA YANKEE', 'item-yankee')">Sumar al Pedido</button>
+                </div>
+
+                <div class="card" id="item-capri">
+                    <div class="carousel" id="car-capri" data-index="0">
+                        <div class="carousel-inner">
+                            <img src="img/lacapri1.heic" alt="La Capri">
+                            <img src="img/lacapri2.heic" alt="La Capri">
+                        </div>
+                        <button class="carousel-btn prev" onclick="moverCarousel('car-capri', -1)">&#10094;</button>
+                        <button class="carousel-btn next" onclick="moverCarousel('car-capri', 1)">&#10095;</button>
+                    </div>
+                    <h3>LA CAPRI</h3>
+                    <p class="ingredientes">Salsa Casera / Muzzarella / Tomate Cherry / Hojas de albahaca / Oliva</p>
+                    <p class="nota">*Incluye papas fritas</p>
+
+                    <label class="label-titulo">Tamaño y Tipo:</label>
+                    <select class="opciones-base">
+                        <option value="28000">XL Carne (Para 3) - $28.000</option>
+                        <option value="25000">XL Pollo (Para 3) - $25.000</option>
+                        <option value="15000">Individual Carne - $15.000</option>
+                        <option value="14000">Individual Pollo - $14.000</option>
+                    </select>
+
+                    <div class="extras-container">
+                        <label class="label-titulo">Extras:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="500" data-name="Huevo"> Huevo (+$500)</label>
+                            <label><input type="checkbox" value="4000" data-name="Fritas"> Fritas (+$4.000)</label>
+                            <label><input type="checkbox" value="5000" data-name="Cheddar"> Cheddar (+$5.000)</label>
+                        </div>
+                    </div>
+                    <button onclick="agregarAlCarrito('LA CAPRI', 'item-capri')">Sumar al Pedido</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="carrito" id="seccion-carrito">
+            <h2>Tu Pedido</h2>
+            <ul id="lista-carrito">
+                <p class="carrito-vacio">El carrito está vacío. ¡Agrega unas milanesas!</p>
+            </ul>
+            <div class="total-container">
+                <strong>Total a Pagar: $<span id="monto-total">0</span></strong>
+            </div>
+            <button class="btn-comprar" onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
