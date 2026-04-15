@@ -19,6 +19,26 @@
         </div>
     </header>
 
+    <!-- Botón flotante del carrito -->
+    <button id="floating-cart-btn" class="floating-cart-btn" onclick="abrirModalCarrito()">
+        🛒 <span id="cart-count">0</span>
+    </button>
+
+    <!-- Modal del carrito -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <span class="close-modal" onclick="cerrarModalCarrito()">&times;</span>
+            <h2>Tu Pedido</h2>
+            <ul id="modal-lista-carrito">
+                <p class="carrito-vacio">El carrito está vacío. ¡Agrega unas milanesas!</p>
+            </ul>
+            <div class="total-container">
+                <strong>Total a Pagar: $<span id="modal-monto-total">0</span></strong>
+            </div>
+            <button class="btn-comprar" onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP</button>
+        </div>
+    </div>
+
     <main class="container">
         <section class="menu">
             <h2>Nuestras Especialidades</h2>

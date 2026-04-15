@@ -146,6 +146,225 @@ select.opciones-base {
     border-color: var(--primario);
 }
 
+/* --- BOTÓN FLOTANTE DEL CARRITO --- */
+.floating-cart-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primario);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    cursor: move;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+    user-select: none;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.floating-cart-btn:hover {
+    background-color: #e0a320;
+    transform: scale(1.05);
+}
+
+.floating-cart-btn:active {
+    cursor: grabbing;
+}
+
+.floating-cart-btn #cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* --- MODAL DEL CARRITO --- */
+.cart-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.cart-modal-content {
+    background-color: var(--fondo-oscuro);
+    margin: 10% auto;
+    padding: 30px;
+    border: 2px solid var(--primario);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: var(--texto-claro);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--primario);
+}
+
+.cart-modal h2 {
+    color: var(--primario);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cart-modal #modal-lista-carrito {
+    list-style-type: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.cart-modal #modal-lista-carrito li {
+    background: #222;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 4px solid var(--primario);
+    border-radius: 4px;
+}
+
+.cart-modal .carrito-vacio {
+    text-align: center;
+    color: #777;
+}
+
+.cart-modal .total-container {
+    text-align: right;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: var(--primario);
+}
+
+.cart-modal .btn-comprar {
+    width: 100%;
+    margin-top: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-cart-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        top: 15px;
+        right: 15px;
+        min-width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        max-height: 40px;
+    }
+
+    .floating-cart-btn #cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -4px;
+        right: -4px;
+    }
+
+    .cart-modal-content {
+        margin: 2% auto;
+        padding: 15px;
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .cart-modal h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .cart-modal #modal-lista-carrito {
+        max-height: 40vh;
+        margin-bottom: 15px;
+    }
+
+    .cart-modal #modal-lista-carrito li {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .cart-modal .carrito-vacio {
+        font-size: 0.9rem;
+        padding: 20px;
+    }
+
+    .cart-modal .total-container {
+        font-size: 1.2rem;
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .cart-modal .btn-comprar {
+        font-size: 0.9rem;
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .close-modal {
+        font-size: 1.5rem;
+        top: 8px;
+        right: 12px;
+    }
+}
+
 button {
     background-color: var(--primario);
     color: #000;

@@ -66,7 +66,10 @@ function inicializarCarruselesTactiles() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', inicializarCarruselesTactiles);
+document.addEventListener('DOMContentLoaded', function () {
+    inicializarCarruselesTactiles();
+    actualizarContadorCarrito();
+});
 
 // --- LÓGICA DEL CARRITO (Mantén lo que ya tenías debajo de esto) ---
 
@@ -146,6 +149,161 @@ function actualizarVistaCarrito() {
     }
 
     montoTotal.textContent = total.toLocaleString('es-AR');
+
+    // Actualizar el contador del botón flotante
+    actualizarContadorCarrito();
+}
+
+function actualizarContadorCarrito() {
+    const cartCount = document.getElementById('cart-count');
+    cartCount.textContent = carrito.length;
+}
+
+function actualizarVistaModalCarrito() {
+    const lista = document.getElementById('modal-lista-carrito');
+    const montoTotal = document.getElementById('modal-monto-total');
+
+    lista.innerHTML = '';
+
+    if (carrito.length === 0) {
+        lista.innerHTML = '<p class="carrito-vacio">El carrito está vacío. ¡Agrega unas milanesas!</p>';
+    } else {
+        carrito.forEach((item) => {
+            const li = document.createElement('li');
+            // Formateamos el número para que se vea con los puntos de los miles
+            const precioFormateado = item.precio.toLocaleString('es-AR');
+            li.textContent = `${item.nombre} .................... $${precioFormateado}`;
+            lista.appendChild(li);
+        });
+    }
+
+    montoTotal.textContent = total.toLocaleString('es-AR');
+}
+
+function abrirModalCarrito() {
+    const modal = document.getElementById('cart-modal');
+    modal.style.display = 'block';
+    actualizarVistaModalCarrito();
+}
+
+function cerrarModalCarrito() {
+    const modal = document.getElementById('cart-modal');
+    modal.style.display = 'none';
+}
+
+// Cerrar modal al hacer clic fuera de ella
+window.onclick = function (event) {
+    const modal = document.getElementById('cart-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+// --- FUNCIONALIDAD DE DRAG PARA EL BOTÓN FLOTANTE ---
+document.addEventListener('DOMContentLoaded', function () {
+    inicializarCarruselesTactiles();
+    actualizarContadorCarrito();
+    inicializarDragCarrito();
+});
+
+function inicializarDragCarrito() {
+    const btn = document.getElementById('floating-cart-btn');
+    let isDragging = false;
+    let startX, startY, initialX, initialY;
+    let hasMoved = false;
+
+    // Cargar posición guardada y verificar si es válida
+    const savedPos = localStorage.getItem('cartBtnPos');
+    if (savedPos) {
+        const pos = JSON.parse(savedPos);
+        // Verificar si la posición está dentro de la pantalla
+        const btnSize = window.innerWidth <= 480 ? 40 : 50;
+        if (pos.left >= 0 && pos.top >= 0 && pos.left + btnSize <= window.innerWidth && pos.top + btnSize <= window.innerHeight) {
+            btn.style.left = pos.left + 'px';
+            btn.style.top = pos.top + 'px';
+            btn.style.right = 'auto';
+        } else {
+            // Resetear posición si está fuera de la pantalla
+            localStorage.removeItem('cartBtnPos');
+            btn.style.left = 'auto';
+            btn.style.top = '20px';
+            btn.style.right = '20px';
+        }
+    }
+
+    // Prevenir click si se movió
+    btn.addEventListener('click', (e) => {
+        if (hasMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+
+    // Desktop drag
+    btn.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+
+    // Mobile drag
+    btn.addEventListener('touchstart', startDrag, {
+        passive: false
+    });
+    document.addEventListener('touchmove', drag, {
+        passive: false
+    });
+    document.addEventListener('touchend', endDrag);
+
+    function startDrag(e) {
+        isDragging = true;
+        hasMoved = false;
+        const event = e.touches ? e.touches[0] : e;
+        startX = event.clientX;
+        startY = event.clientY;
+        const rect = btn.getBoundingClientRect();
+        initialX = rect.left;
+        initialY = rect.top;
+        btn.style.cursor = 'grabbing';
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        const event = e.touches ? e.touches[0] : e;
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+
+        // Solo considerar drag si movimiento > 5px
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+            hasMoved = true;
+            const newX = initialX + dx;
+            const newY = initialY + dy;
+
+            // Limitar dentro de la ventana
+            const btnSize = window.innerWidth <= 480 ? 40 : 50;
+            const maxX = window.innerWidth - btnSize;
+            const maxY = window.innerHeight - btnSize;
+            const clampedX = Math.max(0, Math.min(newX, maxX));
+            const clampedY = Math.max(0, Math.min(newY, maxY));
+
+            btn.style.left = clampedX + 'px';
+            btn.style.top = clampedY + 'px';
+            btn.style.right = 'auto';
+            e.preventDefault();
+        }
+    }
+
+    function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        btn.style.cursor = 'move';
+
+        if (hasMoved) {
+            // Guardar posición solo si se movió
+            const rect = btn.getBoundingClientRect();
+            localStorage.setItem('cartBtnPos', JSON.stringify({
+                left: rect.left,
+                top: rect.top
+            }));
+        }
+    }
 }
 
 function enviarWhatsApp() {
