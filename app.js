@@ -182,7 +182,7 @@ function actualizarVistaModalCarrito() {
 
 function abrirModalCarrito() {
     const modal = document.getElementById('cart-modal');
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
     actualizarVistaModalCarrito();
 }
 
