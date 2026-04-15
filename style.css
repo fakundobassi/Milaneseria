@@ -198,6 +198,9 @@ select.opciones-base {
 /* --- MODAL DEL CARRITO --- */
 .cart-modal {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1001;
     left: 0;
@@ -206,8 +209,7 @@ select.opciones-base {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.3s ease-in-out;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
     padding: 20px;
 }
 
@@ -217,13 +219,14 @@ select.opciones-base {
     padding: 30px;
     border: 2px solid var(--primario);
     border-radius: 12px;
-    width: 90%;
+    width: 100%;
     max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: slideIn 0.3s ease-in-out;
+    box-sizing: border-box;
 }
 
 .close-modal {
