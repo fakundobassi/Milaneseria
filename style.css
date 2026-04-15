@@ -206,11 +206,14 @@ select.opciones-base {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cart-modal-content {
     background-color: var(--fondo-oscuro);
-    margin: 10% auto;
+    margin: 0;
     padding: 30px;
     border: 2px solid var(--primario);
     border-radius: 12px;
@@ -318,7 +321,7 @@ select.opciones-base {
     }
 
     .cart-modal-content {
-        margin: 2% auto;
+        margin: 0;
         padding: 15px;
         width: 95%;
         max-height: 90vh;
