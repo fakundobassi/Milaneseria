@@ -88,20 +88,32 @@ function agregarAlCarrito(nombreVariedad, idContenedor) {
     let precioSubtotal = precioBase;
     let listaExtras = [];
 
-    // 4. Buscar qué checkboxes de extras están marcados
+    // 4. Buscar cantidades de huevos (inputs de número)
+    const inputsNumero = tarjeta.querySelectorAll('input[type="number"].extra-quantity');
+    inputsNumero.forEach(input => {
+        const cantidad = parseInt(input.value) || 0;
+        if (cantidad > 0) {
+            const precio = parseInt(input.getAttribute('data-price'));
+            const nombre = input.getAttribute('data-name');
+            precioSubtotal += cantidad * precio;
+            listaExtras.push(`${nombre} x${cantidad}`);
+        }
+    });
+
+    // 5. Buscar qué checkboxes de extras están marcados (Fritas y Cheddar)
     const checkboxes = tarjeta.querySelectorAll('input[type="checkbox"]:checked');
     checkboxes.forEach(cb => {
         precioSubtotal += parseInt(cb.value);
         listaExtras.push(cb.getAttribute('data-name'));
     });
 
-    // 5. Armar el nombre final del producto para el ticket
+    // 6. Armar el nombre final del producto para el ticket
     let nombreFinal = `${nombreVariedad} | ${textoBase}`;
     if (listaExtras.length > 0) {
         nombreFinal += ` (+ Extras: ${listaExtras.join(', ')})`;
     }
 
-    // 6. Agregar al arreglo del carrito
+    // 7. Agregar al arreglo del carrito
     carrito.push({
         nombre: nombreFinal,
         precio: precioSubtotal
@@ -109,9 +121,10 @@ function agregarAlCarrito(nombreVariedad, idContenedor) {
 
     total += precioSubtotal;
 
-    // 7. Mostrar en pantalla y desmarcar los checkboxes para el próximo pedido
+    // 8. Mostrar en pantalla y desmarcar los campos para el próximo pedido
     actualizarVistaCarrito();
     checkboxes.forEach(cb => cb.checked = false);
+    inputsNumero.forEach(input => input.value = 0);
 }
 
 function actualizarVistaCarrito() {

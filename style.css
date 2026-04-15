@@ -132,6 +132,20 @@ select.opciones-base {
     cursor: pointer;
 }
 
+.extra-quantity {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 4px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.extra-quantity:focus {
+    outline: none;
+    border-color: var(--primario);
+}
+
 button {
     background-color: var(--primario);
     color: #000;
