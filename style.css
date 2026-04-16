@@ -212,6 +212,38 @@ select.opciones-base {
     border-color: var(--primario);
 }
 
+/* --- BOTÓN FLOTANTE DE INSTAGRAM --- */
+.floating-instagram-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+.floating-instagram-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+.floating-instagram-btn:active {
+    transform: translateY(0);
+}
+
 /* --- BOTÓN FLOTANTE DEL CARRITO --- */
 .floating-cart-btn {
     position: fixed;
