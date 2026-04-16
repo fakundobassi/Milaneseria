@@ -17,7 +17,8 @@
             <div>
                 <h2>LOS ARTESANOS DE LA MILANESA</h2>
                 <h3>SALADILLO</h3>
-                <div class="opening-status status-closed">
+                <div class="opening-status status-closed" id="opening-status" onclick="abrirModalHorario()"
+                    role="button" tabindex="0">
                     <span class="status-led"></span>
                     <p id="opening-status-text">Calculando horario...</p>
                 </div>
@@ -56,6 +57,24 @@
             <span class="close-modal" onclick="cerrarConfirmacion()">&times;</span>
             <h2>¡Excelente elección!</h2>
             <p>Ahora te redirigiremos a WhatsApp para confirmar tu dirección y el método de pago.</p>
+        </div>
+    </div>
+
+    <!-- Modal de horarios -->
+    <div id="schedule-modal" class="cart-modal schedule-modal">
+        <div class="cart-modal-content">
+            <span class="close-modal" onclick="cerrarModalHorario()">&times;</span>
+            <h2>Horarios de Atención</h2>
+            <p>Estamos abiertos los siguientes días:</p>
+            <ul class="schedule-list">
+                <li>Miércoles</li>
+                <li>Jueves</li>
+                <li>Viernes</li>
+                <li>Sábado</li>
+                <li>Domingo</li>
+            </ul>
+            <p>Horario de apertura: <strong>19:00 hs a 23:30 hs</strong></p>
+            <p class="schedule-note">Lunes y Martes cerrados.</p>
         </div>
     </div>
 

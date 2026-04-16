@@ -300,11 +300,29 @@ function cerrarModalCarrito() {
     }
 }
 
+function abrirModalHorario() {
+    const scheduleModal = document.getElementById('schedule-modal');
+    if (scheduleModal) {
+        scheduleModal.style.display = 'flex';
+    }
+}
+
+function cerrarModalHorario() {
+    const scheduleModal = document.getElementById('schedule-modal');
+    if (scheduleModal) {
+        scheduleModal.style.display = 'none';
+    }
+}
+
 // Cerrar modal al hacer clic fuera de ella
 window.onclick = function (event) {
-    const modal = document.getElementById('cart-modal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
+    const cartModal = document.getElementById('cart-modal');
+    const scheduleModal = document.getElementById('schedule-modal');
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+    if (event.target === scheduleModal) {
+        scheduleModal.style.display = 'none';
     }
 };
 // --- FUNCIONALIDAD DE DRAG PARA EL BOTÓN FLOTANTE ---
