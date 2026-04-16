@@ -240,7 +240,7 @@ select.opciones-base {
     display: block;
     width: 40px;
     height: 40px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3ClinearGradient id='a' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/linearGradient%3E%3Cpath fill='url(%23a)' d='M349.33 69.33H162.67C115.92 69.33 76.67 108.58 76.67 155.33v186.67c0 46.75 39.25 85.99 86 85.99h186.67c46.75 0 85.99-39.24 85.99-86V155.33c0-46.75-39.24-85.99-85.99-85.99zM256 170.67c46.94 0 85.33 38.39 85.33 85.33S302.94 341.33 256 341.33 170.67 302.94 170.67 256 209.06 170.67 256 170.67zm96-38.67a20.27 20.27 0 1 1-20.27 20.27 20.27 20.27 0 0 1 20.27-20.27z'/%3E%3Cpath fill='%23fff' d='M256 213.33a42.67 42.67 0 1 0 42.67 42.67A42.75 42.75 0 0 0 256 213.33z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23fff' d='M349.33 69.33H162.67C115.92 69.33 76.67 108.58 76.67 155.33v186.67c0 46.75 39.25 85.99 86 85.99h186.67c46.75 0 85.99-39.24 85.99-86V155.33c0-46.75-39.24-85.99-85.99-85.99zM256 170.67c46.94 0 85.33 38.39 85.33 85.33S302.94 341.33 256 341.33 170.67 302.94 170.67 256 209.06 170.67 256 170.67zm96-38.67a20.27 20.27 0 1 1-20.27 20.27 20.27 20.27 0 0 1 20.27-20.27z'/%3E%3Cpath fill='%23fff' d='M256 213.33a42.67 42.67 0 1 0 42.67 42.67A42.75 42.75 0 0 0 256 213.33z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
