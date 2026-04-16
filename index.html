@@ -41,6 +41,11 @@
             <div class="total-container">
                 <strong>Total a Pagar: $<span id="modal-monto-total">0</span></strong>
             </div>
+            <div class="delivery-address">
+                <label for="modal-delivery-address">Dirección de envío (opcional):</label>
+                <input type="text" id="modal-delivery-address" placeholder="Ej: Avenida Siempreviva 742"
+                    maxlength="200">
+            </div>
             <button class="btn-comprar" onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP</button>
         </div>
     </div>
@@ -329,6 +334,11 @@
             </ul>
             <div class="total-container">
                 <strong>Total a Pagar: $<span id="monto-total">0</span></strong>
+            </div>
+            <div class="delivery-address">
+                <label for="delivery-address">Dirección de envío (opcional):</label>
+                <input type="text" id="delivery-address" placeholder="Ej: Calle 123, Barrio Centro, Saladillo"
+                    maxlength="200">
             </div>
             <button class="btn-comprar" onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP</button>
         </section>

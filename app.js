@@ -277,12 +277,27 @@ function eliminarDelCarrito(index) {
 function abrirModalCarrito() {
     const modal = document.getElementById('cart-modal');
     modal.style.display = 'flex';
+
+    // Sincronizar dirección del carrito principal al modal
+    const mainDeliveryInput = document.getElementById('delivery-address');
+    const modalDeliveryInput = document.getElementById('modal-delivery-address');
+    if (mainDeliveryInput && modalDeliveryInput) {
+        modalDeliveryInput.value = mainDeliveryInput.value;
+    }
+
     actualizarVistaModalCarrito();
 }
 
 function cerrarModalCarrito() {
     const modal = document.getElementById('cart-modal');
     modal.style.display = 'none';
+
+    // Sincronizar dirección del modal al carrito principal
+    const mainDeliveryInput = document.getElementById('delivery-address');
+    const modalDeliveryInput = document.getElementById('modal-delivery-address');
+    if (mainDeliveryInput && modalDeliveryInput) {
+        mainDeliveryInput.value = modalDeliveryInput.value;
+    }
 }
 
 // Cerrar modal al hacer clic fuera de ella
@@ -416,6 +431,17 @@ function enviarWhatsApp() {
         minute: '2-digit'
     });
 
+    // Obtener dirección de envío (del modal si está abierto, sino del carrito principal)
+    let direccionEnvio = '';
+    const modalDeliveryInput = document.getElementById('modal-delivery-address');
+    const mainDeliveryInput = document.getElementById('delivery-address');
+
+    if (modalDeliveryInput && modalDeliveryInput.value.trim()) {
+        direccionEnvio = modalDeliveryInput.value.trim();
+    } else if (mainDeliveryInput && mainDeliveryInput.value.trim()) {
+        direccionEnvio = mainDeliveryInput.value.trim();
+    }
+
     let mensaje = `🍕 *LA MILANESERÍA - NUEVO PEDIDO* 🍕\n\n`;
     mensaje += `📅 *Fecha y hora:* ${fecha}\n\n`;
     mensaje += `📋 *DETALLE DEL PEDIDO:*\n`;
@@ -430,10 +456,18 @@ function enviarWhatsApp() {
     mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     const totalFormateado = total.toLocaleString('es-AR');
     mensaje += `💵 *TOTAL A ABONAR: $${totalFormateado}*\n\n`;
+
+    if (direccionEnvio) {
+        mensaje += `🏠 *DIRECCIÓN DE ENVÍO:* ${direccionEnvio}\n\n`;
+    }
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     mensaje += `📍 *Por favor, indícame:*\n`;
-    mensaje += `   • Dirección de entrega\n`;
+    if (!direccionEnvio) {
+        mensaje += `   • Dirección de entrega\n`;
+    }
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     mensaje += `   • Método de pago preferido\n`;
-    mensaje += `   • ¿Necesitas cubiertos o servilletas?\n\n`;
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     mensaje += `🙏 ¡Gracias por elegirnos! Esperamos verte pronto.`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
