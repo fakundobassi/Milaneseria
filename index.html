@@ -14,8 +14,14 @@
     <header>
         <div class="container header-content">
             <img src="img/logo.png" alt="La Milanesería">
-            <h2>LOS ARTESANOS DE LA MILANESA</h2>
-            <h3>SALADILLO</H3>
+            <div>
+                <h2>LOS ARTESANOS DE LA MILANESA</h2>
+                <h3>SALADILLO</h3>
+                <div class="opening-status status-closed">
+                    <span class="status-led"></span>
+                    <p id="opening-status-text">Calculando horario...</p>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -36,6 +42,15 @@
                 <strong>Total a Pagar: $<span id="modal-monto-total">0</span></strong>
             </div>
             <button class="btn-comprar" onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP</button>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación antes de WhatsApp -->
+    <div id="confirmation-modal" class="cart-modal confirmation-modal">
+        <div class="cart-modal-content">
+            <span class="close-modal" onclick="cerrarConfirmacion()">&times;</span>
+            <h2>¡Excelente elección!</h2>
+            <p>Ahora te redirigiremos a WhatsApp para confirmar tu dirección y el método de pago.</p>
         </div>
     </div>
 

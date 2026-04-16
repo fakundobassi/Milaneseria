@@ -69,7 +69,51 @@ function inicializarCarruselesTactiles() {
 document.addEventListener('DOMContentLoaded', function () {
     inicializarCarruselesTactiles();
     actualizarContadorCarrito();
+    actualizarEstadoApertura();
+    setInterval(actualizarEstadoApertura, 60000);
 });
+
+function obtenerEstadoApertura() {
+    const ahora = new Date();
+    const dia = ahora.getDay();
+    const hora = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const minutosTotales = hora * 60 + minutos;
+    const apertura = 19 * 60;
+    const cierre = 23 * 60 + 30;
+    const diasAbiertos = [0, 3, 4, 5, 6]; // Domingo, Miércoles, Jueves, Viernes, Sábado
+    const estaDiaAbierto = diasAbiertos.includes(dia);
+    const estaHorarioValido = minutosTotales >= apertura && minutosTotales <= cierre;
+    const abierto = estaDiaAbierto && estaHorarioValido;
+
+    let mensaje;
+    if (abierto) {
+        mensaje = '¡Estamos tomando pedidos!';
+    } else if (dia === 1 || dia === 2) {
+        mensaje = 'Cerrado. Abrimos el Miércoles a las 19:00hs';
+    } else {
+        mensaje = 'Abrimos a las 19:00hs';
+    }
+
+    return {
+        abierto,
+        mensaje
+    };
+}
+
+function actualizarEstadoApertura() {
+    const statusBox = document.querySelector('.opening-status');
+    const statusText = document.getElementById('opening-status-text');
+    if (!statusBox || !statusText) return;
+
+    const {
+        abierto,
+        mensaje
+    } = obtenerEstadoApertura();
+    statusText.textContent = mensaje;
+    statusBox.classList.toggle('status-open', abierto);
+    statusBox.classList.toggle('status-closed', !abierto);
+}
 
 // --- LÓGICA DEL CARRITO (Mantén lo que ya tenías debajo de esto) ---
 
@@ -324,5 +368,20 @@ function enviarWhatsApp() {
     mensaje += `*TOTAL A ABONAR: $${totalFormateado}*`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
+    mostrarConfirmacionWhatsApp(url);
+}
+
+function mostrarConfirmacionWhatsApp(url) {
+    cerrarModalCarrito();
+    const confirmationModal = document.getElementById('confirmation-modal');
+    confirmationModal.style.display = 'flex';
+    setTimeout(() => {
+        confirmationModal.style.display = 'none';
+        window.open(url, '_blank');
+    }, 5000);
+}
+
+function cerrarConfirmacion() {
+    const confirmationModal = document.getElementById('confirmation-modal');
+    confirmationModal.style.display = 'none';
 }
