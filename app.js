@@ -183,11 +183,29 @@ function actualizarVistaCarrito() {
     if (carrito.length === 0) {
         lista.innerHTML = '<p class="carrito-vacio">El carrito está vacío. ¡Agrega unas milanesas!</p>';
     } else {
-        carrito.forEach((item) => {
+        carrito.forEach((item, index) => {
             const li = document.createElement('li');
-            // Formateamos el número para que se vea con los puntos de los miles
             const precioFormateado = item.precio.toLocaleString('es-AR');
-            li.textContent = `${item.nombre} .................... $${precioFormateado}`;
+
+            // Crear contenedor para el item y el botón
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'cart-item-container';
+
+            // Texto del item
+            const itemText = document.createElement('span');
+            itemText.textContent = `${item.nombre} .................... $${precioFormateado}`;
+            itemText.className = 'cart-item-text';
+
+            // Botón de eliminar
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '🗑️';
+            deleteBtn.className = 'delete-item-btn';
+            deleteBtn.onclick = () => eliminarDelCarrito(index);
+            deleteBtn.title = 'Eliminar producto';
+
+            itemContainer.appendChild(itemText);
+            itemContainer.appendChild(deleteBtn);
+            li.appendChild(itemContainer);
             lista.appendChild(li);
         });
     }
@@ -212,16 +230,48 @@ function actualizarVistaModalCarrito() {
     if (carrito.length === 0) {
         lista.innerHTML = '<p class="carrito-vacio">El carrito está vacío. ¡Agrega unas milanesas!</p>';
     } else {
-        carrito.forEach((item) => {
+        carrito.forEach((item, index) => {
             const li = document.createElement('li');
-            // Formateamos el número para que se vea con los puntos de los miles
             const precioFormateado = item.precio.toLocaleString('es-AR');
-            li.textContent = `${item.nombre} .................... $${precioFormateado}`;
+
+            // Crear contenedor para el item y el botón
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'cart-item-container';
+
+            // Texto del item
+            const itemText = document.createElement('span');
+            itemText.textContent = `${item.nombre} .................... $${precioFormateado}`;
+            itemText.className = 'cart-item-text';
+
+            // Botón de eliminar
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '🗑️';
+            deleteBtn.className = 'delete-item-btn';
+            deleteBtn.onclick = () => eliminarDelCarrito(index);
+            deleteBtn.title = 'Eliminar producto';
+
+            itemContainer.appendChild(itemText);
+            itemContainer.appendChild(deleteBtn);
+            li.appendChild(itemContainer);
             lista.appendChild(li);
         });
     }
 
     montoTotal.textContent = total.toLocaleString('es-AR');
+}
+
+function eliminarDelCarrito(index) {
+    if (index >= 0 && index < carrito.length) {
+        // Restar el precio del total
+        total -= carrito[index].precio;
+
+        // Eliminar el item del array
+        carrito.splice(index, 1);
+
+        // Actualizar las vistas
+        actualizarVistaCarrito();
+        actualizarVistaModalCarrito();
+    }
 }
 
 function abrirModalCarrito() {
