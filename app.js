@@ -455,19 +455,18 @@ function enviarWhatsApp() {
 
     mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     const totalFormateado = total.toLocaleString('es-AR');
-    mensaje += `💵 *TOTAL A ABONAR: $${totalFormateado}*\n\n`;
+    const totalConEnvio = direccionEnvio ? `$${totalFormateado} +envío` : `$${totalFormateado}`;
+    mensaje += `💵 *TOTAL A ABONAR: ${totalConEnvio}*\n\n`;
 
     if (direccionEnvio) {
         mensaje += `🏠 *DIRECCIÓN DE ENVÍO:* ${direccionEnvio}\n\n`;
     }
-    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+
     mensaje += `📍 *Por favor, indícame:*\n`;
     if (!direccionEnvio) {
         mensaje += `   • Dirección de entrega\n`;
     }
-    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    mensaje += `   • Método de pago preferido\n`;
-    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+    mensaje += `   • Método de pago preferido\n\n`;
     mensaje += `🙏 ¡Gracias por elegirnos! Esperamos verte pronto.`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
