@@ -357,15 +357,34 @@ function enviarWhatsApp() {
     }
 
     const numero = "5492345548607";
-    let mensaje = "¡Hola La Milanesería! 👋 Me gustaría hacer el siguiente pedido:\n\n";
-
-    carrito.forEach(item => {
-        const precioFormateado = item.precio.toLocaleString('es-AR');
-        mensaje += `🔸 *${item.nombre}* \n   Valor: $${precioFormateado}\n\n`;
+    const fecha = new Date().toLocaleString('es-AR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
     });
 
+    let mensaje = `🍕 *LA MILANESERÍA - NUEVO PEDIDO* 🍕\n\n`;
+    mensaje += `📅 *Fecha y hora:* ${fecha}\n\n`;
+    mensaje += `📋 *DETALLE DEL PEDIDO:*\n`;
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+    carrito.forEach((item, index) => {
+        const precioFormateado = item.precio.toLocaleString('es-AR');
+        mensaje += `${index + 1}. *${item.nombre}*\n`;
+        mensaje += `   💰 Valor: $${precioFormateado}\n\n`;
+    });
+
+    mensaje += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
     const totalFormateado = total.toLocaleString('es-AR');
-    mensaje += `*TOTAL A ABONAR: $${totalFormateado}*`;
+    mensaje += `💵 *TOTAL A ABONAR: $${totalFormateado}*\n\n`;
+    mensaje += `📍 *Por favor, indícame:*\n`;
+    mensaje += `   • Dirección de entrega\n`;
+    mensaje += `   • Método de pago preferido\n`;
+    mensaje += `   • ¿Necesitas cubiertos o servilletas?\n\n`;
+    mensaje += `🙏 ¡Gracias por elegirnos! Esperamos verte pronto.`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     mostrarConfirmacionWhatsApp(url);
